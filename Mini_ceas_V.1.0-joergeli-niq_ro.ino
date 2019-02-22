@@ -2422,7 +2422,8 @@ void get_time()
   rtc[6] = now.year();
   rtc[5] = now.month();
   rtc[4] = now.day();
-  rtc[3] = now.dayOfWeek(); //returns 0-6 where 0 = Sunday
+//  rtc[3] = now.dayOfWeek(); //returns 0-6 where 0 = Sunday (new RTClib)
+  rtc[3] = now.dayOfTheWeek(); //returns 0-6 where 0 = Sunday (new RTClib)    
   //rtc[2] = now.hour();  depends on boolean summertime_EU
   rtc[1] = now.minute();
   rtc[0] = now.second();
