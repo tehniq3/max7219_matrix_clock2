@@ -161,7 +161,7 @@ void setup() {
   dht.begin();
   
   digitalWrite(buton1, HIGH);                 // turn on pullup resistor for button on pin 2
-  digitalWrite(buton1, HIGH);                 // turn on pullup resistor for button on pin 3
+  digitalWrite(buton2, HIGH);                 // turn on pullup resistor for button on pin 3
   pinMode(LIGHT, INPUT);                 // LDR for brightness
  
   if(debug){
