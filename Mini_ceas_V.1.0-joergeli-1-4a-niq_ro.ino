@@ -26,7 +26,7 @@ Added automatic switching approx. every 2 minutes between Small-, Wordclock-, Sm
       (No automatic-switching in Basic-Mode!)
 Added automatic displaying of dayname, date, month-name, year and week of year  ( when second is 35 )
 Modified buttonB as Toggle-Button, which toggles between "Display Date = On" and "Display Date = Off"
-Added automatic Daylight Saving Time  (+/- 1 hour)
+Added automatic Daylight Saving Time  (+/- 1 hour) - removed
 
 Reprogrammed code of Wordclock-Mode to look like this: http://arduino.joergeli.de/wordclock/wordclock.php
 (shows German-time in steps of 5 minutes, bottom-line shows +1, +2, +3, +4 minutes )
@@ -35,6 +35,7 @@ Added DS18B20 Temp-Sensor and displaying it's temperature while in circle-mode w
 Added Photoresistor (LDR) for automatic changing brightness (therefore brightness-menu removed)
 
 Nicu FLORICA change temperature sensor as DHT22 - 10.020.2019, Craiova, Romania
+             remove autoadjust summer/winter hour
 
 ***********************************************************************/
 
@@ -2543,10 +2544,10 @@ void get_time()
   rtc[4] = now.day();
 //  rtc[3] = now.dayOfWeek(); //returns 0-6 where 0 = Sunday (new RTClib)
   rtc[3] = now.dayOfTheWeek(); //returns 0-6 where 0 = Sunday (old RTClib)
-  //rtc[2] = now.hour();  depends on boolean summertime_EU
+  rtc[2] = now.hour(); // depends on boolean summertime_EU
   rtc[1] = now.minute();
   rtc[0] = now.second();
-
+/*
  // Calculate if summer- or wintertime
   if(summertime_EU(now.year(), now.month(), now.day(), now.hour(), 1)){
     if(debug){Serial.print("Sommerzeit =  true"); }
@@ -2561,7 +2562,7 @@ void get_time()
       if(debug){Serial.print("Sommerzeit = false"); }
       rtc[2] = now.hour();    // summertime = "normal" hour
   }
-
+*/
 
  // Calculate day of year and week of year 
  DayWeekNumber(rtc[6],rtc[5],rtc[4],rtc[3]);
